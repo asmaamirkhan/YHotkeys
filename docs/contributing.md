@@ -12,6 +12,7 @@
 * 🌃 VSCode üzerinden çalışılmaktadır
 * 🔸 Çalışma ortamı hakkında bilgiler için [🔰 AutoHotkey'e Giriş](https://windows.yemreak.com/autohotkey/giris) alanına bakabilirsin
 * [💫 AutoHotkey](https://windows.yemreak.com/autohotkey) alanından kullanılan programlama dili hakkında bilgi alabilirsin
+* ⭐ [AutoHotkey v1.1.31.01](https://www.autohotkey.com/download/1.1/AutoHotkey_1.1.31.01_setup.exe) sürümü ile programlanmıştır ve pencere eylemleri tüm desktoplarda çalışır
 
 ## 🗂️ Dizinlerin Anlamları
 

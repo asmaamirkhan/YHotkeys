@@ -12,6 +12,9 @@ description: YHotkeys'de neler değişti
 
 ⚗️ Experimental version
 
+- 💞 Startup option added
+- 👨‍🔧 Setup error fixed
+
 ## 🏷️ 2.4.3.1
 
 ✨ More useful shortcuts and translator

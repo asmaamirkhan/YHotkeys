@@ -33,3 +33,11 @@ MouseIsOver(WinTitle) {
     MouseGetPos,,, Win
     return WinExist(WinTitle . " ahk_id " . Win)
 }
+
+ShowDialog(title, msg) {
+    MsgBox, 4, %title%, %msg%
+    IfMsgBox Yes
+        return True
+    else
+        return False
+}

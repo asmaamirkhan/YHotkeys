@@ -12,6 +12,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #MaxThreadsPerHotkey, 1 ; Yanlışlıkla 2 kere buton algılanmasını engeller
 
 #Include, %A_ScriptDir%\..\core\config.ahk
+#Include, %A_ScriptDir%\..\core\common.ahk
 
 TIP_MENU := "👷‍♂️ YHotkeys - Kurulum Aracı ~ YEmreAk (v" . VERSION . ")"
 ICON_TRAY := "..\..\res\worker.ico"
@@ -89,29 +90,45 @@ AskToStart() {
         global PATH_EXE
         Run, %PATH_EXE%
     }
+
+    filepath := A_Startup . "\YHotkeys.lnk"
+    if (!FileExist(filepath) && ShowStartupDialog()) {
+        global DIR_NAME, PATH_EXE, DIR_ICON
+        FileCreateShortcut, %PATH_EXE%, %A_Startup%\YHotkeys.lnk, %DIR_NAME%, , Kısayol Yöneticisi, %DIR_ICON%\seedling.ico
+    }
+
     ExitApp
 }
 
 ShowRunDialog() {
-    global RELEASE_TITLE, RELEASE_BODY, TIP_MENU, APP_VERSION, RELEASE_TAGNAME
-    MsgBox, 4, %TIP_MENU%, ▶️ Kurulum tamamlandı`, çalıştırmak ister misiniz
-    IfMsgBox Yes
-        return True
-    else
-        return False
+    global TIP_MENU
+    
+    title := TIP_MENU
+    msg := "▶️ Kurulum tamamlandı`, çalıştırmak ister misiniz"
+    
+    return ShowDialog(title, msg)
 }
 
 ShowConfirmDialog() {
-    global RELEASE_TITLE, RELEASE_BODY, TIP_MENU, APP_VERSION, RELEASE_TAGNAME
-    MsgBox, 4, %TIP_MENU%, ☠️ Kurulum işlemi çalışan YHotkeys'i sonlandıracaktır, devam edilsin mi?
-    IfMsgBox Yes
-        return True
-    else
-        return False
+    global TIP_MENU
+
+    title := TIP_MENU
+    msg := "☠️ Kurulum işlemi çalışan YHotkeys'i sonlandıracaktır, devam edilsin mi?"
+    
+    return ShowDialog(title, msg)
+}
+
+ShowStartupDialog() {
+    global TIP_MENU
+    
+    title := TIP_MENU
+    msg := "💞 Bilgisayar açıldığında otomatik olarak başlatılsın mı?"
+    
+    return ShowDialog(title, msg)
 }
 
 KillScript() {
     global APP_NAME
-    command := "taskkill /im " . APP_NAME . ".exe"
+    command := "taskkill /im """ . APP_NAME . ".exe"" /f /t"
     RunWait, %comspec% /c "%command%", , Hide
 }
